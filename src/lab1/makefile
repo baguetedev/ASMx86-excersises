@@ -1,15 +1,19 @@
-all: hello writeText compareText
+all: dodawanie odejmowanie mnozenie
 
-hello: hello.s
-	as hello.s -o hello.o
-	ld hello.o -o hello
+dodawanie.o: dodawanie.s
+	as --32 --gstabs dodawanie.s -o dodawanie.o
 
-writeText: writeText.s
-	as writeText.s -o writeText.o
-	ld writeText.o -o writeText
+dodawanie: dodawanie.o
+	ld -m elf_i386 dodawanie.o -o dodawanie
 
-compareText: compareText.s
-	as compareText.s -o compareText.o
-	ld compareText.o -o compareText
+odejmowanie.o: odejmowanie.s
+	as --32 --gstabs odejmowanie.s -o odejmowanie.o
 
+odejmowanie: odejmowanie.o
+	ld -m elf_i386 odejmowanie.o -o odejmowanie
 
+mnozenie.o: mnozenie.s
+	as --32 --gstabs mnozenie.s -o mnozenie.o
+
+mnozenie: mnozenie.o
+	ld -m elf_i386 mnozenie.o -o mnozenie
